@@ -9,9 +9,7 @@ const Menu = ({ menuState }) => {
         <li className="mb-6">
           <NavLink
             className={({ isActive }) =>
-              isActive
-                ? 'text-1xl header-link font-semibold active-header-link'
-                : 'text-1xl header-link font-semibold'
+              isActive ? 'text-1xl header-link active-header-link' : 'text-1xl header-link'
             }
             to="/services">
             Services
@@ -21,9 +19,7 @@ const Menu = ({ menuState }) => {
         <li className="mb-6">
           <NavLink
             className={({ isActive }) =>
-              isActive
-                ? 'text-1xl header-link font-semibold active-header-link'
-                : 'text-1xl header-link font-semibold'
+              isActive ? 'text-1xl header-link active-header-link' : 'text-1xl header-link'
             }
             to="/blog">
             Blog

@@ -4,10 +4,10 @@ import SectionHeading from '../../Shared/SectionHeading/SectionHeading';
 const Advertised = () => {
   return (
     <section className="py-40 px-2">
-      <div className="container">
+      <div className="container mx-auto">
         <SectionHeading
-          topText={'OUR ADVERTISED PRODUCTS'}
-          mainText={'Top Advertised Products'}></SectionHeading>
+          top={'OUR ADVERTISED PRODUCTS'}
+          main={'Top Advertised Products'}></SectionHeading>
       </div>
     </section>
   );
