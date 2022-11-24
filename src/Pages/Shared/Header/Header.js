@@ -25,18 +25,14 @@ const Header = () => {
         <div className="hidden lg:flex gap-4 items-center justify-center">
           <NavLink
             className={({ isActive }) =>
-              isActive
-                ? 'text-1xl header-link font-semibold active-header-link'
-                : 'text-1xl header-link font-semibold'
+              isActive ? 'text-1xl header-link  active-header-link' : 'text-1xl header-link '
             }
             to="/services">
             Services
           </NavLink>
           <NavLink
             className={({ isActive }) =>
-              isActive
-                ? 'text-1xl header-link font-semibold active-header-link'
-                : 'text-1xl header-link font-semibold'
+              isActive ? 'text-1xl header-link  active-header-link' : 'text-1xl header-link '
             }
             to="/blog">
             Blog
