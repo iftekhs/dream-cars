@@ -12,8 +12,11 @@ const Header = () => {
     setMenuState(!menuState);
   };
 
+  const headerAbsoluteRoutes = ['/'];
+  const shouldBeAbsolute = headerAbsoluteRoutes.includes(location.pathname);
+
   return (
-    <header className={`header absolute w-full top-0 p-5 py-6`}>
+    <header className={`header ${shouldBeAbsolute && 'absolute w-full top-0'} p-5 py-6`}>
       <nav className="container mx-auto flex items-center justify-between">
         <Link to="/">
           <div className="logo-container flex items-center justify-center gap-1">

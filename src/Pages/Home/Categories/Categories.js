@@ -20,7 +20,7 @@ const Categories = () => {
     <section className="pt-20 px-2">
       <div className="container mx-auto">
         <SectionHeading top={'ALL CAR CATEGORIES'} main={'Our All Car Categories'}></SectionHeading>
-        {true ? (
+        {isLoading ? (
           <Loader></Loader>
         ) : (
           <div className="flex items-center gap-4">
@@ -28,7 +28,7 @@ const Categories = () => {
               <Link
                 key={category._id}
                 to={`/category/${category._id}`}
-                className="py-3 px-5 rounded-full bg-main text-white">
+                className="py-3 px-5 rounded-full bg-main text-white transition-all hover:bg-cgray hover:text-dark">
                 {category.name}
               </Link>
             ))}

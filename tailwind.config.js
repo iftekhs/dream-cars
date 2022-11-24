@@ -10,6 +10,7 @@ module.exports = {
         dark: '#36314f',
         cdp: '#392ca0',
         clp: '#f2f0fb',
+        cgray: '#f7f7f7',
       },
     },
   },
