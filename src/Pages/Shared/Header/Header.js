@@ -12,14 +12,8 @@ const Header = () => {
     setMenuState(!menuState);
   };
 
-  const absoluteRouteLists = ['/', '/login', '/register'];
-  const isAbsolute = absoluteRouteLists.includes(location.pathname);
-
   return (
-    <header
-      className={`header ${
-        isAbsolute ? 'absolute w-full top-0' : 'bg-slate-900'
-      } p-5 py-8 text-white`}>
+    <header className={`header absolute w-full top-0 p-5 py-6`}>
       <nav className="container mx-auto flex items-center justify-between">
         <Link to="/">
           <div className="logo-container flex items-center justify-center gap-1">
@@ -53,12 +47,12 @@ const Header = () => {
           <>
             <Link
               to="/login"
-              className="btn border border-white text-white hover:bg-white hover:text-slate-900">
+              className="py-2 transition-all px-5 border-transparent bg-main rounded-full text-white hover:bg-white hover:text-slate-900">
               Log In
             </Link>
             <Link
               to="/register"
-              className="btn border border-white text-white hover:bg-white hover:text-slate-900">
+              className="py-2 transition-all px-5 border-transparent bg-main rounded-full text-white hover:bg-white hover:text-slate-900">
               Sign Up
             </Link>
           </>
