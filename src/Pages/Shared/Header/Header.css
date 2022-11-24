@@ -1,0 +1,19 @@
+.header {
+  z-index: 100;
+}
+.header-link {
+  transition: 100ms all ease-in-out;
+  padding: 0.5rem 0.8rem;
+  border-radius: 5px;
+}
+
+.header-link:hover,
+.active-header-link {
+  background-color: #f7f7ff;
+  color: #070600;
+}
+
+.btn-burger {
+  border: 1px solid lightgray;
+  transition: 100ms all ease-in-out;
+}
