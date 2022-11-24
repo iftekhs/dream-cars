@@ -18,7 +18,7 @@ const Header = () => {
   return (
     <header
       className={`header ${
-        isAbsolute ? 'absolute w-full top-0 bg-slate-900' : 'bg-slate-900'
+        isAbsolute ? 'absolute w-full top-0' : 'bg-slate-900'
       } p-5 py-8 text-white`}>
       <nav className="container mx-auto flex items-center justify-between">
         <Link to="/">
@@ -53,12 +53,12 @@ const Header = () => {
           <>
             <Link
               to="/login"
-              className="btn border border-white text-white hover:bg-white hover:text-cdark">
+              className="btn border border-white text-white hover:bg-white hover:text-slate-900">
               Log In
             </Link>
             <Link
               to="/register"
-              className="btn border border-white text-white hover:bg-white hover:text-cdark">
+              className="btn border border-white text-white hover:bg-white hover:text-slate-900">
               Sign Up
             </Link>
           </>
@@ -72,7 +72,6 @@ const Header = () => {
           <GoThreeBars></GoThreeBars>
         </button>
       </nav>
-
       <Menu menuState={menuState}></Menu>
     </header>
   );

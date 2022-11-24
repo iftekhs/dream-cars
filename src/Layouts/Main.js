@@ -1,15 +1,16 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
+import Footer from '../Pages/Shared/Footer/Footer';
 import Header from '../Pages/Shared/Header/Header';
 
 const Main = () => {
   return (
     <>
       <Header></Header>
-      <main>
+      <main className="mh-100">
         <Outlet></Outlet>
       </main>
-      <h2>Footer goes here</h2>
+      <Footer></Footer>
     </>
   );
 };
