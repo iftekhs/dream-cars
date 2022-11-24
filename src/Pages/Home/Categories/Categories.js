@@ -1,11 +1,34 @@
 import React from 'react';
 import SectionHeading from '../../Shared/SectionHeading/SectionHeading';
+import { useQuery } from '@tanstack/react-query';
+import { Link } from 'react-router-dom';
 
 const Categories = () => {
+  const { data: categories = [] } = useQuery({
+    queryKey: ['categories'],
+    queryFn: async () => {
+      const res = await fetch(`${process.env.REACT_APP_API_ROOT}/categories`);
+      const data = await res.json();
+      return data;
+    },
+  });
+
+  console.log(categories);
+
   return (
-    <section className="py-8 px-2">
+    <section className="pt-20 px-2">
       <div className="container mx-auto">
         <SectionHeading top={'ALL CAR CATEGORIES'} main={'Our All Car Categories'}></SectionHeading>
+        <div className="flex items-center gap-4">
+          {categories.map((category) => (
+            <Link
+              key={category._id}
+              to={`/category/${category._id}`}
+              className="py-3 px-5 rounded-full bg-main text-white">
+              {category.name}
+            </Link>
+          ))}
+        </div>
       </div>
     </section>
   );
