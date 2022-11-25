@@ -36,7 +36,7 @@ const Menu = ({ menuState }) => {
           </li>
           <li>
             <Link
-              to="/register"
+              to="/signup"
               className="py-2 transition-all px-5 border-transparent bg-main rounded-full text-white hover:bg-white hover:text-slate-900">
               Sign Up
             </Link>

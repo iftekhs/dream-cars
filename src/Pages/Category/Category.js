@@ -8,6 +8,7 @@ import Product from './Product/Product';
 
 const Category = () => {
   const { data: currentCategory } = useLoaderData();
+
   const navigation = useNavigation();
 
   const { data: products = [], isLoading } = useQuery({

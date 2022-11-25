@@ -6,6 +6,7 @@ import axios from 'axios';
 import Category from '../Pages/Category/Category';
 import { cl } from '../Helpers/Helpers';
 import Login from '../Pages/Login/Login';
+import SignUp from '../Pages/SignUp/SignUp';
 
 const router = createBrowserRouter([
   {
@@ -18,16 +19,16 @@ const router = createBrowserRouter([
       },
       {
         path: '/category/:id',
-        element: (
-          <>
-            <Category></Category>
-          </>
-        ),
+        element: <Category></Category>,
         loader: async ({ params }) => axios.get(cl(`/category/${params.id}`)),
       },
       {
         path: '/login',
         element: <Login></Login>,
+      },
+      {
+        path: '/signup',
+        element: <SignUp></SignUp>,
       },
     ],
   },

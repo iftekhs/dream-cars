@@ -55,7 +55,7 @@ const Header = () => {
               Log In
             </Link>
             <Link
-              to="/register"
+              to="/signup"
               className={`${
                 !shouldBeAbsolute ? 'bg-white text-dark' : 'bg-main'
               } py-2 transition-all px-5 border-transparent rounded-full text-white hover:bg-white hover:text-slate-900`}>
