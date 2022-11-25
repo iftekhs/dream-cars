@@ -3,12 +3,13 @@ import SectionHeading from '../../Shared/SectionHeading/SectionHeading';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import Loader from '../../Shared/Loader/Loader';
+import { cl } from '../../../Helpers/Helpers';
 
 const Categories = () => {
-  const { data: categories, isLoading } = useQuery({
+  const { data: categories = [], isLoading } = useQuery({
     queryKey: ['categories'],
     queryFn: async () => {
-      const res = await fetch(`${process.env.REACT_APP_API_ROOT}/categories`);
+      const res = await fetch(cl('/categories'));
       const data = await res.json();
       return data;
     },

@@ -16,7 +16,10 @@ const Header = () => {
   const shouldBeAbsolute = headerAbsoluteRoutes.includes(location.pathname);
 
   return (
-    <header className={`header ${shouldBeAbsolute && 'absolute w-full top-0'} p-5 py-6`}>
+    <header
+      className={`header ${
+        shouldBeAbsolute ? 'absolute w-full top-0' : 'bg-main text-white'
+      } p-5 py-6`}>
       <nav className="container mx-auto flex items-center justify-between">
         <Link to="/">
           <div className="logo-container flex items-center justify-center gap-1">
@@ -46,12 +49,16 @@ const Header = () => {
           <>
             <Link
               to="/login"
-              className="py-2 transition-all px-5 border-transparent bg-main rounded-full text-white hover:bg-white hover:text-slate-900">
+              className={`${
+                !shouldBeAbsolute ? 'bg-white text-dark' : 'bg-main'
+              } py-2 transition-all px-5 border-transparent rounded-full text-white hover:bg-white hover:text-slate-900`}>
               Log In
             </Link>
             <Link
               to="/register"
-              className="py-2 transition-all px-5 border-transparent bg-main rounded-full text-white hover:bg-white hover:text-slate-900">
+              className={`${
+                !shouldBeAbsolute ? 'bg-white text-dark' : 'bg-main'
+              } py-2 transition-all px-5 border-transparent rounded-full text-white hover:bg-white hover:text-slate-900`}>
               Sign Up
             </Link>
           </>

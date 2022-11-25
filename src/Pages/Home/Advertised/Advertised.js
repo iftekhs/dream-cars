@@ -14,7 +14,7 @@ const Advertised = () => {
 
   return (
     <>
-      {ads.length && (
+      {ads.length > 0 && (
         <section className="mb-20 py-24 px-2">
           <div className="container mx-auto">
             <SectionHeading
