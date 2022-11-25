@@ -61,6 +61,18 @@ const SignUp = () => {
       });
   };
 
+  //   Providers
+  const googleProvider = new GoogleAuthProvider();
+
+  const handleGoogleSignIn = () => {
+    providerLogin(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        saveUser(user.displayName, user.email, 'user');
+      })
+      .catch(console.error);
+  };
+
   const saveUser = (name, email, type) => {
     const user = { name, email, type };
     axios
@@ -75,18 +87,6 @@ const SignUp = () => {
       .finally(() => {
         setBtnLoading(false);
       });
-  };
-
-  //   Providers
-  const googleProvider = new GoogleAuthProvider();
-
-  const handleGoogleSignIn = () => {
-    providerLogin(googleProvider)
-      .then((result) => {
-        const user = result.user;
-        setCreatedUserEmail(user.email);
-      })
-      .catch(console.error);
   };
 
   return (

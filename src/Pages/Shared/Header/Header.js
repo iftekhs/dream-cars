@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { GoThreeBars } from 'react-icons/go';
 import { Link, NavLink, useLocation } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider';
 import './Header.css';
 import Menu from './Menu/Menu';
+import Avatar from '../../../images/avatar.svg';
 
 const Header = () => {
   const [menuState, setMenuState] = useState(false);
+  const { user, logOut } = useContext(AuthContext);
   const location = useLocation();
 
   const toggleMenu = () => {
@@ -46,22 +49,48 @@ const Header = () => {
         </div>
 
         <div className="hidden lg:flex items-center justify-center gap-2">
-          <>
-            <Link
-              to="/login"
-              className={`${
-                !shouldBeAbsolute ? 'bg-white text-dark' : 'bg-main'
-              } py-2 transition-all px-5 border-transparent rounded-full text-white hover:bg-white hover:text-slate-900`}>
-              Log In
-            </Link>
-            <Link
-              to="/signup"
-              className={`${
-                !shouldBeAbsolute ? 'bg-white text-dark' : 'bg-main'
-              } py-2 transition-all px-5 border-transparent rounded-full text-white hover:bg-white hover:text-slate-900`}>
-              Sign Up
-            </Link>
-          </>
+          {user && user.uid ? (
+            <>
+              <div>
+                <div className="relative">
+                  <img
+                    className="w-10 h-10 rounded-full"
+                    onError={({ currentTarget }) => {
+                      currentTarget.onerror = null;
+                      currentTarget.src = Avatar;
+                    }}
+                    src={user.photoURL ? user.photoURL : Avatar}
+                    alt="user"
+                    height="60"
+                  />
+                </div>
+              </div>
+              <button
+                onClick={() => logOut()}
+                className={`${
+                  !shouldBeAbsolute ? 'bg-white text-dark' : 'bg-main'
+                } py-2 transition-all px-5 border-transparent rounded-full text-white hover:bg-white hover:text-slate-900`}>
+                Log Out
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className={`${
+                  !shouldBeAbsolute ? 'bg-white text-dark' : 'bg-main'
+                } py-2 transition-all px-5 border-transparent rounded-full text-white hover:bg-white hover:text-slate-900`}>
+                Log In
+              </Link>
+              <Link
+                to="/signup"
+                className={`${
+                  !shouldBeAbsolute ? 'bg-white text-dark' : 'bg-main'
+                } py-2 transition-all px-5 border-transparent rounded-full text-white hover:bg-white hover:text-slate-900`}>
+                Sign Up
+              </Link>
+            </>
+          )}
         </div>
 
         <button

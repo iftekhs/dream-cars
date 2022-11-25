@@ -37,7 +37,7 @@ const Login = () => {
     };
 
     signIn(data.email, data.password)
-      .then((result) => {
+      .then(() => {
         setLoginUserEmail(data.email);
       })
       .catch((error) => {

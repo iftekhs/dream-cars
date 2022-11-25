@@ -14,7 +14,6 @@ const Product = ({ product }) => {
     createdAt,
     sellerName,
     verified,
-    categoryId,
   } = product;
 
   const date = new Date(createdAt).toDateString();
