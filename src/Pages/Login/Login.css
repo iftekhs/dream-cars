@@ -1,0 +1,27 @@
+.auth {
+  max-width: 900px;
+  min-width: 900px;
+  height: 600px;
+}
+
+.auth {
+  min-height: 85vh;
+  position: relative;
+  background-size: contain;
+}
+
+.auth-body-container {
+  box-shadow: 9px 13px 26px -21px rgba(0, 0, 0, 0.1);
+}
+
+.auth-body {
+  width: 600px;
+  max-width: 600px;
+  padding: 40px;
+}
+
+@media (max-width: 500px) {
+  .auth {
+    min-height: 150vh;
+  }
+}
