@@ -28,7 +28,7 @@ const Category = () => {
     <section className="py-8 px-2">
       <div className="container mx-auto">
         <SectionHeading
-          top={`ALL ${currentCategory.name} PRODUCTS`}
+          top={`${currentCategory.name} PRODUCTS`}
           main={currentCategory.name}></SectionHeading>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {products.map((product) => (

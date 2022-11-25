@@ -5,22 +5,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import loginImage from '../../images/login.svg';
 import useToken from '../../hooks/useToken';
 import { AuthContext } from '../../contexts/AuthProvider';
-import axios from 'axios';
-import { cl } from '../../Helpers/Helpers';
+import setAuthToken, { cl } from '../../Helpers/Helpers';
 
 const SignUp = () => {
   const [btnLoading, setBtnLoading] = useState(false);
 
   const { createUser, providerLogin, updateUserProfile } = useContext(AuthContext);
   const [signUpError, setSignUpError] = useState('');
-
-  const [createdUserEmail, setCreatedUserEmail] = useState('');
-  const [token] = useToken(createdUserEmail);
   const navigate = useNavigate();
-
-  if (token) {
-    return navigate('/');
-  }
 
   const handleRegister = (event) => {
     event.preventDefault();
@@ -75,17 +67,25 @@ const SignUp = () => {
 
   const saveUser = (name, email, type) => {
     const user = { name, email, type };
-    axios
-      .post(cl('/users'), user, {
-        headers: {
-          'content-type': 'application/json',
-        },
-      })
+    const currentUser = {
+      email,
+    };
+    fetch(cl('/users'), {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
       .then(() => {
-        setCreatedUserEmail(email);
-      })
-      .finally(() => {
-        setBtnLoading(false);
+        setAuthToken(currentUser)
+          .then((data) => {
+            if (data.accessToken) {
+              navigate('/');
+            }
+          })
+          .catch(console.error);
       });
   };
 

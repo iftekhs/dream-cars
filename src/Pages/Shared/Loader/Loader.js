@@ -1,9 +1,9 @@
 import React from 'react';
 import './Loader.css';
 
-const Loader = () => {
+const Loader = ({ full = false }) => {
   return (
-    <div className="loader flex items-center justify-center" role="status">
+    <div className={`loader ${full && 'mh-100'} flex items-center justify-center`} role="status">
       <svg
         aria-hidden="true"
         className="mr-2 w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-main"

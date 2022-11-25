@@ -4,48 +4,52 @@ import { FaGoogle } from 'react-icons/fa';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.css';
 import loginImage from '../../images/login.svg';
-import useToken from '../../hooks/useToken';
 import { AuthContext } from '../../contexts/AuthProvider';
+import setAuthToken, { cl } from '../../Helpers/Helpers';
 
 const Login = () => {
-  const { signIn, providerLogin } = useContext(AuthContext);
-  const [loginError, setLoginError] = useState('');
-  const [loginUserEmail, setLoginUserEmail] = useState('');
+  const { login, providerLogin, setLoading } = useContext(AuthContext);
+
+  const [error, setError] = useState(null);
   const [btnLoading, setBtnLoading] = useState(false);
-  const [token] = useToken(loginUserEmail);
+
   const location = useLocation();
   const navigate = useNavigate();
-  const from = location.state?.from?.pathname || '/';
-
-  if (token) {
-    navigate(from, { replace: true });
-  }
+  let from = location.state?.from?.pathname || '/';
 
   const handleLogin = (event) => {
     event.preventDefault();
 
     setBtnLoading(true);
-    setLoginError(null);
+    setError(null);
 
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
 
-    const data = {
-      email,
-      password,
-    };
-
-    signIn(data.email, data.password)
-      .then(() => {
-        setLoginUserEmail(data.email);
+    login(email, password)
+      .then((result) => {
+        const user = result.user;
+        const currentUser = {
+          email: user.email,
+        };
+        setAuthToken(currentUser)
+          .then((data) => {
+            if (data.accessToken) {
+              navigate(from, { replace: true });
+            }
+          })
+          .catch(console.error)
+          .finally(() => {
+            setBtnLoading(false);
+          });
       })
       .catch((error) => {
-        console.log(error.message);
-        setLoginError(error.message);
+        setError(error.message);
+        setBtnLoading(false);
       })
       .finally(() => {
-        setBtnLoading(false);
+        setLoading(false);
       });
   };
 
@@ -56,9 +60,33 @@ const Login = () => {
     providerLogin(googleProvider)
       .then((result) => {
         const user = result.user;
-        setLoginUserEmail(user.email);
+        saveUser(user.displayName, user.email, 'user');
       })
       .catch(console.error);
+  };
+
+  const saveUser = (name, email, type) => {
+    const user = { name, email, type };
+    const currentUser = {
+      email,
+    };
+    fetch(cl('/users'), {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(user),
+    })
+      .then((res) => res.json())
+      .then(() => {
+        setAuthToken(currentUser)
+          .then((data) => {
+            if (data.accessToken) {
+              navigate(from, { replace: true });
+            }
+          })
+          .catch(console.error);
+      });
   };
 
   return (
@@ -107,7 +135,7 @@ const Login = () => {
                   />
                 </div>
 
-                <p className="mb-3 text-main1">{loginError}</p>
+                <p className="mb-3 text-main1">{error}</p>
 
                 <button
                   disabled={btnLoading}
