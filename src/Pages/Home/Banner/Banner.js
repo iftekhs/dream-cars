@@ -4,7 +4,7 @@ import './banner.css';
 
 const Banner = () => {
   return (
-    <section className="px-2 bg-clp">
+    <section className="px-2 bg-clp mb-20">
       <div className="banner md:text-left text-center lg:py-52 py-32 flex items-center justify-center">
         <div className="container mx-auto flex lg:flex-row flex-col items-center justify-center lg:gap-4 gap-20">
           <div className="px-16">
@@ -12,7 +12,7 @@ const Banner = () => {
             <h1 className="mt-6 md:text-5xl text-3xl font-bold">
               Buy your dream car with the cheapest price!
             </h1>
-            <p className="mt-6 md:text-lg ">
+            <p className="mt-6 md:text-lg lh-18">
               We resell exclusive cars with a very cheap price to help you get your dream car!
               Currently we are offering a 10% discount on every car for the black friday!
             </p>

@@ -14,16 +14,14 @@ const Categories = () => {
     },
   });
 
-  console.log(categories);
-
   return (
-    <section className="pt-20 px-2">
+    <section className="mb-20 py-24 px-2">
       <div className="container mx-auto">
         <SectionHeading top={'ALL CAR CATEGORIES'} main={'Our All Car Categories'}></SectionHeading>
         {isLoading ? (
           <Loader></Loader>
         ) : (
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center md:justify-start justify-center gap-4">
             {categories.map((category) => (
               <Link
                 key={category._id}
