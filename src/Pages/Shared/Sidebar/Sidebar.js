@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css';
-import { MdList, MdOutlineDashboard } from 'react-icons/md';
+import { MdList, MdOutlineReportGmailerrorred } from 'react-icons/md';
+import { FiUsers } from 'react-icons/fi';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import useRole from '../../../hooks/useRole';
 
@@ -37,9 +38,44 @@ const Sidebar = () => {
                 const activeStyles = isActive && 'bg-white text-main';
                 return activeStyles + sidebarLinkStyles;
               }}
-              to="/dashboard">
+              to="/dashboard/products">
               <div className="flex items-center justify-center gap-2">
                 <MdList></MdList> My Products
+              </div>
+            </NavLink>
+          </>
+        )}
+
+        {userRole === 'admin' && (
+          <>
+            <NavLink
+              className={({ isActive }) => {
+                const activeStyles = isActive && 'bg-white text-main';
+                return activeStyles + sidebarLinkStyles;
+              }}
+              to="/dashboard">
+              <div className="flex items-center justify-center gap-2">
+                <MdList></MdList> All Buyers
+              </div>
+            </NavLink>
+            <NavLink
+              className={({ isActive }) => {
+                const activeStyles = isActive && 'bg-white text-main';
+                return activeStyles + sidebarLinkStyles;
+              }}
+              to="/dashboard/sellers">
+              <div className="flex items-center justify-center gap-2">
+                <FiUsers></FiUsers> All Sellers
+              </div>
+            </NavLink>
+            <NavLink
+              className={({ isActive }) => {
+                const activeStyles = isActive && 'bg-white text-main';
+                return activeStyles + sidebarLinkStyles;
+              }}
+              to="/dashboard/reported">
+              <div className="flex items-center justify-center gap-2">
+                <MdOutlineReportGmailerrorred></MdOutlineReportGmailerrorred> Reported Items
               </div>
             </NavLink>
           </>

@@ -10,7 +10,7 @@ import SignUp from '../Pages/SignUp/SignUp';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Blogs from '../Pages/Blogs/Blogs';
 import DashboardLayout from '../Layouts/DashboardLayout';
-import MyOrders from '../Pages/Dashboard/MyOrders/MyOrders';
+import Dashboard from '../Pages/Dashboard/Dashboard';
 
 const router = createBrowserRouter([
   {
@@ -46,11 +46,15 @@ const router = createBrowserRouter([
   },
   {
     path: '/dashboard',
-    element: <DashboardLayout></DashboardLayout>,
+    element: (
+      <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>
+    ),
     children: [
       {
         path: '/dashboard',
-        element: <MyOrders></MyOrders>,
+        element: <Dashboard></Dashboard>,
       },
     ],
   },
