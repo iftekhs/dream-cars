@@ -17,13 +17,11 @@ const Header = () => {
   };
 
   const headerAbsoluteRoutes = ['/'];
-  const shouldBeAbsolute = headerAbsoluteRoutes.includes(location.pathname);
+  const isAbsolute = headerAbsoluteRoutes.includes(location.pathname);
 
   return (
     <header
-      className={`header ${
-        shouldBeAbsolute ? 'absolute w-full top-0' : 'bg-main text-white'
-      } p-5 py-6`}>
+      className={`header ${isAbsolute ? 'absolute w-full top-0' : 'bg-main text-white'} p-5 py-6`}>
       <nav className="container mx-auto flex items-center justify-between">
         <Link to="/">
           <div className="logo-container flex items-center justify-center gap-1">
@@ -36,7 +34,7 @@ const Header = () => {
           {user && user.uid && (
             <NavLink
               className={({ isActive }) =>
-                isActive ? 'text-1xl header-link  active-header-link' : 'text-1xl header-link '
+                isActive ? 'text-1xl header-link active-header-link' : 'text-1xl header-link'
               }
               to="/dashboard">
               Dashboard
@@ -45,7 +43,7 @@ const Header = () => {
 
           <NavLink
             className={({ isActive }) =>
-              isActive ? 'text-1xl header-link  active-header-link' : 'text-1xl header-link '
+              isActive ? 'text-1xl header-link  active-header-link' : 'text-1xl header-link'
             }
             to="/blogs">
             Blogs
@@ -72,7 +70,7 @@ const Header = () => {
               <button
                 onClick={() => logOut()}
                 className={`${
-                  !shouldBeAbsolute ? 'bg-white text-dark' : 'bg-main'
+                  !isAbsolute ? 'bg-white text-dark' : 'bg-main'
                 } py-2 transition-all px-5 border-transparent rounded-full text-white hover:bg-white hover:text-slate-900`}>
                 Log Out
               </button>
@@ -82,14 +80,14 @@ const Header = () => {
               <Link
                 to="/login"
                 className={`${
-                  !shouldBeAbsolute ? 'bg-white text-dark' : 'bg-main'
+                  !isAbsolute ? 'bg-white text-dark' : 'bg-main'
                 } py-2 transition-all px-5 border-transparent rounded-full text-white hover:bg-white hover:text-slate-900`}>
                 Log In
               </Link>
               <Link
                 to="/signup"
                 className={`${
-                  !shouldBeAbsolute ? 'bg-white text-dark' : 'bg-main'
+                  !isAbsolute ? 'bg-white text-dark' : 'bg-main'
                 } py-2 transition-all px-5 border-transparent rounded-full text-white hover:bg-white hover:text-slate-900`}>
                 Sign Up
               </Link>
@@ -100,8 +98,8 @@ const Header = () => {
         <button
           onClick={toggleMenu}
           className={`btn ${
-            menuState && 'bg-cgray text-cdark'
-          } block lg:hidden btn-burger text-3xl hover:bg-cgray hover:text-cdark`}>
+            menuState && 'bg-cgray text-main'
+          } block lg:hidden btn-burger text-3xl hover:bg-cgray hover:text-main`}>
           <GoThreeBars></GoThreeBars>
         </button>
       </nav>

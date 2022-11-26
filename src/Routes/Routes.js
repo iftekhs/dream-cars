@@ -9,6 +9,8 @@ import Login from '../Pages/Login/Login';
 import SignUp from '../Pages/SignUp/SignUp';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Blogs from '../Pages/Blogs/Blogs';
+import DashboardLayout from '../Layouts/DashboardLayout';
+import MyOrders from '../Pages/Dashboard/MyOrders/MyOrders';
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,16 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: async ({ params }) => axios.get(cl(`/category/${params.id}`)),
+      },
+    ],
+  },
+  {
+    path: '/dashboard',
+    element: <DashboardLayout></DashboardLayout>,
+    children: [
+      {
+        path: '/dashboard',
+        element: <MyOrders></MyOrders>,
       },
     ],
   },

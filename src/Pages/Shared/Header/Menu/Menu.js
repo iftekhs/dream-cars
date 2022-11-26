@@ -12,7 +12,20 @@ const Menu = ({ menuState }) => {
         <li className="mb-6">
           <NavLink
             className={({ isActive }) =>
-              isActive ? 'text-1xl header-link active-header-link' : 'text-1xl header-link'
+              isActive
+                ? 'text-1xl header-menu-link active-header-menu-link text-main'
+                : 'text-1xl header-menu-link text-main'
+            }
+            to="/dashboard">
+            Dashboard
+          </NavLink>
+        </li>
+        <li className="mb-6">
+          <NavLink
+            className={({ isActive }) =>
+              isActive
+                ? 'text-1xl header-menu-link active-header-menu-link text-main'
+                : 'text-1xl header-menu-link text-main'
             }
             to="/blogs">
             Blogs

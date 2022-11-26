@@ -10,7 +10,19 @@
 .header-link:hover,
 .active-header-link {
   background-color: #fff;
-  color: #070600;
+  color: #1e293b;
+}
+
+.header-menu-link {
+  transition: 100ms all ease-in-out;
+  padding: 0.5rem 0.8rem;
+  border-radius: 5px;
+}
+
+.header-menu-link:hover,
+.active-header-menu-link {
+  background-color: #1e293b;
+  color: #fff;
 }
 
 .btn-burger {
