@@ -1,9 +1,8 @@
 import React from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
-import PrimaryBtn from '../../Shared/PrimaryBtn/PrimaryBtn';
 import './Product.css';
 
-const Product = ({ product }) => {
+const Product = ({ product, setActiveProduct }) => {
   const {
     picture,
     name,
@@ -18,6 +17,11 @@ const Product = ({ product }) => {
 
   const date = new Date(createdAt).toDateString();
 
+  const handleClick = () => {
+    console.log('yes');
+    setActiveProduct(product);
+  };
+
   return (
     <div className="product flex flex-col">
       <div>
@@ -28,7 +32,7 @@ const Product = ({ product }) => {
         <div className="flex flex-col items-start gap-4">
           <p>{location}</p>
           <p>Used: {yearOfUse}/yr</p>
-          <p>Posted At: {date}/yr</p>
+          <p>Posted At: {date}</p>
           <p className=" flex items-center gap-2">
             Seller Name: {sellerName}
             {verified && <FaCheckCircle className="text-blue-500"></FaCheckCircle>}
@@ -41,7 +45,11 @@ const Product = ({ product }) => {
           </p>
         </div>
         <div className="mt-5">
-          <PrimaryBtn>Book Now</PrimaryBtn>
+          <button
+            onClick={handleClick}
+            className="py-3 px-5 rounded-full bg-main text-white transition-all hover:bg-cgray hover:text-dark">
+            Book Now
+          </button>
         </div>
       </div>
     </div>

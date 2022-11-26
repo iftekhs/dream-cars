@@ -7,7 +7,7 @@ const Menu = ({ menuState }) => {
   const { user, logOut } = useContext(AuthContext);
   return (
     <div
-      className={`container ${!menuState && 'hidden'} bg-white p-5 rounded-lg mx-auto py-5  mt-2`}>
+      className={`container ${!menuState && 'hidden'} bg-white  p-5 rounded-lg mx-auto py-5  mt-2`}>
       <ul>
         <li className="mb-6">
           <NavLink

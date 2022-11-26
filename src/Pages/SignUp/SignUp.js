@@ -4,7 +4,8 @@ import { FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import loginImage from '../../images/login.svg';
 import { AuthContext } from '../../contexts/AuthProvider';
-import setAuthToken, { cl } from '../../Helpers/Helpers';
+import { cl } from '../../Helpers/Helpers';
+import setAuthToken from '../../api/auth';
 
 const SignUp = () => {
   const [btnLoading, setBtnLoading] = useState(false);
@@ -24,14 +25,14 @@ const SignUp = () => {
     const photoURL = form.photoURL.value;
     const email = form.email.value;
     const password = form.password.value;
-    const type = form.type.value;
+    const role = form.role.value;
 
     const data = {
       name,
       photoURL,
       email,
       password,
-      type,
+      role,
     };
 
     createUser(data.email, data.password)
@@ -42,12 +43,12 @@ const SignUp = () => {
         };
         updateUserProfile(userInfo)
           .then(() => {
-            saveUser(data.name, data.email, data.type);
+            saveUser(data.name, data.email, data.role);
           })
           .catch((err) => console.log(err));
       })
       .catch((error) => {
-        console.log(error);
+        setBtnLoading(false);
         setSignUpError(error.message);
       });
   };
@@ -64,8 +65,8 @@ const SignUp = () => {
       .catch(console.error);
   };
 
-  const saveUser = (name, email, type) => {
-    const user = { name, email, type };
+  const saveUser = (name, email, role) => {
+    const user = { name, email, role };
     const currentUser = {
       email,
     };
@@ -168,8 +169,8 @@ const SignUp = () => {
                   </label>
                   <select
                     className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main focus:border-main block w-full p-2.5"
-                    name="type"
-                    id="type"
+                    name="role"
+                    id="role"
                     defaultValue="user">
                     <option value="user">User</option>
                     <option value="seller">Seller</option>

@@ -8,7 +8,7 @@ const Card = ({ heading, text, icon }) => {
         {icon}
       </div>
       <h2 className="mt-3 md:text-2xl text-xl font-semibold">{heading}</h2>
-      <p className="lh-18">{text}</p>
+      <p className="mt-2">{text}</p>
     </div>
   );
 };

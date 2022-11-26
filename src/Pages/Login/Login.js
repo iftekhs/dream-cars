@@ -5,10 +5,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Login.css';
 import loginImage from '../../images/login.svg';
 import { AuthContext } from '../../contexts/AuthProvider';
-import setAuthToken, { cl } from '../../Helpers/Helpers';
+import setAuthToken from '../../api/auth';
+import { cl } from '../../Helpers/Helpers';
+
 
 const Login = () => {
-  const { login, providerLogin, setLoading } = useContext(AuthContext);
+  const { login, providerLogin } = useContext(AuthContext);
 
   const [error, setError] = useState(null);
   const [btnLoading, setBtnLoading] = useState(false);
@@ -47,9 +49,6 @@ const Login = () => {
       .catch((error) => {
         setError(error.message);
         setBtnLoading(false);
-      })
-      .finally(() => {
-        setLoading(false);
       });
   };
 

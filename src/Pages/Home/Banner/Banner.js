@@ -29,8 +29,8 @@ const Banner = () => {
           </div>
         </div>
       </section>
-      <div class="shape-container">
-        <div class="shape">
+      <div className="shape-container">
+        <div className="shape">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
             <path
               fill="#ffffff"
