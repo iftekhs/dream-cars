@@ -36,13 +36,6 @@ const Header = () => {
             className={({ isActive }) =>
               isActive ? 'text-1xl header-link  active-header-link' : 'text-1xl header-link '
             }
-            to="/services">
-            Services
-          </NavLink>
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? 'text-1xl header-link  active-header-link' : 'text-1xl header-link '
-            }
             to="/blogs">
             Blogs
           </NavLink>

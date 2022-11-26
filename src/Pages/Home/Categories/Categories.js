@@ -16,7 +16,7 @@ const Categories = () => {
   });
 
   return (
-    <section className="mb-20 py-24 px-2">
+    <section className="mb-10 pb-24 px-2">
       <div className="container mx-auto">
         <SectionHeading top={'ALL CAR CATEGORIES'} main={'Our All Car Categories'}></SectionHeading>
         {isLoading ? (
@@ -33,6 +33,8 @@ const Categories = () => {
             ))}
           </div>
         )}
+
+        <div className=""></div>
       </div>
     </section>
   );

@@ -32,7 +32,7 @@ const Blogs = () => {
     <section className="py-8 px-2">
       <div className="container mx-auto">
         {blogs.map((blog) => (
-          <div key={blog._key} className="bg-white py-3 px-5 rounded-lg mb-5 border">
+          <div key={blog._id} className="bg-white py-3 px-5 rounded-lg mb-5 border">
             <h2 className="text-3xl font-semibold">{blog.question}</h2>
             <p className="lh-18 mt-3">{blog.answer}</p>
           </div>

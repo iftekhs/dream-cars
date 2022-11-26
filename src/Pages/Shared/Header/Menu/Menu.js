@@ -14,16 +14,6 @@ const Menu = ({ menuState }) => {
             className={({ isActive }) =>
               isActive ? 'text-1xl header-link active-header-link' : 'text-1xl header-link'
             }
-            to="/services">
-            Services
-          </NavLink>
-        </li>
-
-        <li className="mb-6">
-          <NavLink
-            className={({ isActive }) =>
-              isActive ? 'text-1xl header-link active-header-link' : 'text-1xl header-link'
-            }
             to="/blogs">
             Blogs
           </NavLink>

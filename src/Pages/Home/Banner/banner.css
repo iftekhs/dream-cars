@@ -1,0 +1,11 @@
+.shape-container {
+  margin-top: 50px;
+  position: relative;
+}
+
+.shape {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
