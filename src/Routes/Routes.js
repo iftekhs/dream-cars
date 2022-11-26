@@ -8,6 +8,7 @@ import { cl } from '../Helpers/Helpers';
 import Login from '../Pages/Login/Login';
 import SignUp from '../Pages/SignUp/SignUp';
 import PrivateRoute from './PrivateRoute/PrivateRoute';
+import Blogs from '../Pages/Blogs/Blogs';
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: '/signup',
         element: <SignUp></SignUp>,
+      },
+      {
+        path: '/blogs',
+        element: <Blogs></Blogs>,
       },
       {
         path: '/category/:id',

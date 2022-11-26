@@ -3,7 +3,6 @@ import { GoogleAuthProvider } from 'firebase/auth';
 import { FaGoogle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
 import loginImage from '../../images/login.svg';
-import useToken from '../../hooks/useToken';
 import { AuthContext } from '../../contexts/AuthProvider';
 import setAuthToken, { cl } from '../../Helpers/Helpers';
 
