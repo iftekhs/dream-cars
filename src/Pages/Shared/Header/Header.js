@@ -9,6 +9,7 @@ import Avatar from '../../../images/avatar.svg';
 const Header = () => {
   const [menuState, setMenuState] = useState(false);
   const { user, logOut } = useContext(AuthContext);
+
   const location = useLocation();
 
   const toggleMenu = () => {
@@ -32,6 +33,16 @@ const Header = () => {
         </Link>
 
         <div className="hidden lg:flex gap-4 items-center justify-center">
+          {user && user.uid && (
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? 'text-1xl header-link  active-header-link' : 'text-1xl header-link '
+              }
+              to="/dashboard">
+              Dashboard
+            </NavLink>
+          )}
+
           <NavLink
             className={({ isActive }) =>
               isActive ? 'text-1xl header-link  active-header-link' : 'text-1xl header-link '
