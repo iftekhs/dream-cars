@@ -3,10 +3,11 @@ import SectionHeading from '../../Shared/SectionHeading/SectionHeading';
 import { useQuery } from '@tanstack/react-query';
 import BookingModal from '../../Shared/BookingModal/Modal';
 import Product from '../../Shared/Product/Product';
+import Loader from '../../Shared/Loader/Loader';
 
 const Advertised = () => {
   const [activeProduct, setActiveProduct] = useState(null);
-  const { data: ads = [] } = useQuery({
+  const { data: ads = [], isLoading } = useQuery({
     queryKey: ['ads'],
     queryFn: async () => {
       const res = await fetch(`${process.env.REACT_APP_API_ROOT}/ads`);
@@ -14,6 +15,10 @@ const Advertised = () => {
       return data;
     },
   });
+
+  if (isLoading) {
+    return <Loader></Loader>;
+  }
 
   return (
     <>

@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import { AuthContext } from '../../../../contexts/AuthProvider';
 import { cl } from '../../../../Helpers/Helpers';
 import Loader from '../../../Shared/Loader/Loader';
+import swal from 'sweetalert';
 
 const MyProducts = () => {
   const { user } = useContext(AuthContext);
@@ -13,7 +14,7 @@ const MyProducts = () => {
     isLoading,
     refetch,
   } = useQuery({
-    queryKey: ['categories'],
+    queryKey: ['SellerProducts'],
     queryFn: async () => {
       const res = await fetch(cl(`/products/seller/${user.email}`));
       const data = await res.json();
@@ -48,6 +49,36 @@ const MyProducts = () => {
         }
       })
       .catch((error) => console.log(error));
+  };
+
+  const handleDelete = (product) => {
+    swal({
+      title: 'Are you sure?',
+      text: 'Once deleted, you will not be able to recover this!',
+      icon: 'warning',
+      buttons: true,
+      dangerMode: true,
+    }).then((willDelete) => {
+      if (willDelete) {
+        fetch(cl(`/products/${product._id}`), {
+          method: 'DELETE',
+          headers: {
+            'content-type': 'application/json',
+            authorization: `Bearer ${localStorage.getItem('dream-accessToken')}`,
+          },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount > 0) {
+              refetch();
+              swal('Successfully deleted the product!', {
+                icon: 'success',
+              });
+            }
+          })
+          .catch((error) => console.log(error));
+      }
+    });
   };
 
   return (
@@ -87,8 +118,8 @@ const MyProducts = () => {
                   <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
                     {new Date(product.createdAt).toDateString()}
                   </td>
-                  <td class="py-2">
-                    <img class="h-24 rounded-lg" src={product.picture} alt={product.name} />
+                  <td className="py-2">
+                    <img className="h-24 rounded-lg" src={product.picture} alt={product.name} />
                   </td>
                   <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
                     {product.name}
@@ -119,7 +150,9 @@ const MyProducts = () => {
                         Unadvertise
                       </button>
                     )}
-                    <button onClick={} className="py-2 w-28 px-3 rounded-full bg-rose-500 text-white">
+                    <button
+                      onClick={() => handleDelete(product)}
+                      className="py-2 w-28 px-3 rounded-full bg-rose-500 text-white">
                       Delete
                     </button>
                   </td>

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { AuthContext } from '../../../../contexts/AuthProvider';
 import { cl } from '../../../../Helpers/Helpers';
 import BtnLoader from '../../../Shared/BtnLoader/BtnLoader';
 import Loader from '../../../Shared/Loader/Loader';
@@ -8,9 +9,10 @@ import SectionContent from '../../../Shared/SectionContent/SectionContent';
 
 const AddProduct = () => {
   const [btnLoading, setBtnLoading] = useState(false);
+  const { user } = useContext(AuthContext);
 
   const { data: categories = [], isLoading } = useQuery({
-    queryKey: ['categories'],
+    queryKey: ['addProductCategories'],
     queryFn: async () => {
       const res = await fetch(cl('/categories'));
       const data = await res.json();
@@ -53,6 +55,7 @@ const AddProduct = () => {
       purchaseYear,
       yearOfUse,
       categoryId,
+      sellerName: user?.name,
     };
 
     console.log(product);

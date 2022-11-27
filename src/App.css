@@ -31,3 +31,7 @@ button:disabled {
 input:read-only {
   background-color: #f7f7ff;
 }
+
+.swal-text {
+  text-align: center;
+}

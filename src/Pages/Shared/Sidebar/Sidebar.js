@@ -73,7 +73,7 @@ const Sidebar = () => {
               }}
               to="/dashboard">
               <div className="flex items-center justify-center gap-2">
-                <MdList></MdList> All Buyers
+                <FiUsers></FiUsers> All Buyers
               </div>
             </NavLink>
             <NavLink
