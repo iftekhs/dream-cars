@@ -15,6 +15,7 @@ import AddProduct from '../Pages/Dashboard/Sellers/AddProduct/AddProduct';
 import SellerRoute from './SellerRoute/SellerRoute';
 import AllSellers from '../Pages/Dashboard/Admin/AllSellers/AllSellers';
 import AdminRoute from './AdminRoute/AdminRoute';
+import Payment from '../Pages/Dashboard/Payment/Payment';
 
 const router = createBrowserRouter([
   {
@@ -75,6 +76,11 @@ const router = createBrowserRouter([
             <AddProduct></AddProduct>
           </SellerRoute>
         ),
+      },
+      {
+        path: '/dashboard/payment/:id',
+        element: <Payment></Payment>,
+        loader: async ({ params }) => axios.get(cl(`/bookings/find/${params.id}`)),
       },
     ],
   },

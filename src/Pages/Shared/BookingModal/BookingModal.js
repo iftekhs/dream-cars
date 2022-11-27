@@ -16,9 +16,6 @@ const BookingModal = ({ product, setActiveProduct }) => {
 
     const booking = {
       productId: product._id,
-      productName: product.name,
-      address: product.location,
-      price: product.resalePrice,
       number,
       location,
     };

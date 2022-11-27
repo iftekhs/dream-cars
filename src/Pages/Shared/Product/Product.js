@@ -1,12 +1,20 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaCheckCircle } from 'react-icons/fa';
 import { cl } from '../../../Helpers/Helpers';
 import './Product.css';
 
 const Product = ({ product, setActiveProduct }) => {
+  const [verified, setVerified] = useState(false);
+
   const { picture, name, location, resalePrice, originalPrice, yearOfUse, createdAt, sellerName } =
     product;
+
+  useEffect(() => {
+    fetch(cl(`/users/verified/${product.userEmail}`))
+      .then((res) => res.json())
+      .then((data) => setVerified(data.verified));
+  }, [product]);
 
   const date = new Date(createdAt).toDateString();
 
@@ -48,7 +56,7 @@ const Product = ({ product, setActiveProduct }) => {
           <p>Posted At: {date}</p>
           <p className=" flex items-center gap-2">
             Seller Name: {sellerName}
-            {false && <FaCheckCircle className="text-blue-500"></FaCheckCircle>}
+            {verified && <FaCheckCircle className="text-blue-500"></FaCheckCircle>}
           </p>
           <p className="px-5 py-3 rounded-full bg-cgray font-semibold">
             Original Price: ${originalPrice / 1000}k
