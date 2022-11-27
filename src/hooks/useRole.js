@@ -3,6 +3,7 @@ import { cl } from '../Helpers/Helpers';
 
 const useRole = (email) => {
   const [userRole, setUserRole] = useState(null);
+  const [userRoleLoading, setUserRoleLoading] = useState(true);
   useEffect(() => {
     if (email) {
       fetch(cl(`/users/${email}`))
@@ -11,10 +12,11 @@ const useRole = (email) => {
           if (data.role) {
             setUserRole(data.role);
           }
+          setUserRoleLoading(false);
         });
     }
   }, [email]);
-  return [userRole];
+  return [userRole, userRoleLoading];
 };
 
 export default useRole;

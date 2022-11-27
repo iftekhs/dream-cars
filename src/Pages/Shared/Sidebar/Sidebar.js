@@ -5,10 +5,16 @@ import { MdList, MdOutlineReportGmailerrorred } from 'react-icons/md';
 import { FiUsers } from 'react-icons/fi';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import useRole from '../../../hooks/useRole';
+import { AiOutlineAppstoreAdd } from 'react-icons/ai';
+import Loader from '../Loader/Loader';
 
 const Sidebar = () => {
   const { user } = useContext(AuthContext);
-  const [userRole] = useRole(user?.email);
+  const [userRole, userRoleLoading] = useRole(user?.email);
+
+  if (userRoleLoading) {
+    return <Loader></Loader>;
+  }
 
   const sidebarLinkStyles =
     ' text-white hover:bg-white hover:text-main transition-all py-2 pl-3 pr-5 rounded';
@@ -19,6 +25,7 @@ const Sidebar = () => {
         {userRole === 'user' && (
           <>
             <NavLink
+              end
               className={({ isActive }) => {
                 const activeStyles = isActive && 'bg-white text-main';
                 return activeStyles + sidebarLinkStyles;
@@ -34,13 +41,25 @@ const Sidebar = () => {
         {userRole === 'seller' && (
           <>
             <NavLink
+              end
               className={({ isActive }) => {
                 const activeStyles = isActive && 'bg-white text-main';
                 return activeStyles + sidebarLinkStyles;
               }}
-              to="/dashboard/products">
+              to="/dashboard">
               <div className="flex items-center justify-center gap-2">
                 <MdList></MdList> My Products
+              </div>
+            </NavLink>
+            <NavLink
+              end
+              className={({ isActive }) => {
+                const activeStyles = isActive && 'bg-white text-main';
+                return activeStyles + sidebarLinkStyles;
+              }}
+              to="/dashboard/add-product">
+              <div className="flex items-center justify-center gap-2">
+                <AiOutlineAppstoreAdd></AiOutlineAppstoreAdd> Add Product
               </div>
             </NavLink>
           </>
@@ -49,6 +68,7 @@ const Sidebar = () => {
         {userRole === 'admin' && (
           <>
             <NavLink
+              end
               className={({ isActive }) => {
                 const activeStyles = isActive && 'bg-white text-main';
                 return activeStyles + sidebarLinkStyles;
@@ -59,6 +79,7 @@ const Sidebar = () => {
               </div>
             </NavLink>
             <NavLink
+              end
               className={({ isActive }) => {
                 const activeStyles = isActive && 'bg-white text-main';
                 return activeStyles + sidebarLinkStyles;
@@ -69,6 +90,7 @@ const Sidebar = () => {
               </div>
             </NavLink>
             <NavLink
+              end
               className={({ isActive }) => {
                 const activeStyles = isActive && 'bg-white text-main';
                 return activeStyles + sidebarLinkStyles;

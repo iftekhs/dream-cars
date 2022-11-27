@@ -11,6 +11,8 @@ import PrivateRoute from './PrivateRoute/PrivateRoute';
 import Blogs from '../Pages/Blogs/Blogs';
 import DashboardLayout from '../Layouts/DashboardLayout';
 import Dashboard from '../Pages/Dashboard/Dashboard';
+import AddProduct from '../Pages/Dashboard/Sellers/AddProduct/AddProduct';
+import SellerRoute from './SellerRoute/SellerRoute';
 
 const router = createBrowserRouter([
   {
@@ -55,6 +57,14 @@ const router = createBrowserRouter([
       {
         path: '/dashboard',
         element: <Dashboard></Dashboard>,
+      },
+      {
+        path: '/dashboard/add-product',
+        element: (
+          <SellerRoute>
+            <AddProduct></AddProduct>
+          </SellerRoute>
+        ),
       },
     ],
   },

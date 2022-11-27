@@ -9,7 +9,7 @@ const DashboardLayout = () => {
       <Header></Header>
       <div className="flex">
         <Sidebar></Sidebar>
-        <main className="mh-100 w-full">
+        <main className="mh-100 w-full bg-clp">
           <Outlet></Outlet>
         </main>
       </div>
