@@ -125,12 +125,12 @@ const MyProducts = () => {
                     {product.name}
                   </td>
                   <td className="py-4 px-6">
-                    <div
+                    <span
                       className={`bg-main text-white py-2 px-4 rounded-full inline ${
                         product.status === 'unsold' ? 'bg-amber-500' : 'bg-emerald-500'
                       }`}>
                       {product.status}
-                    </div>
+                    </span>
                   </td>
 
                   <td className="py-4 px-6">{product.originalPrice}</td>
