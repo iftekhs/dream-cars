@@ -12,16 +12,14 @@ const Sidebar = () => {
   const { user } = useContext(AuthContext);
   const [userRole, userRoleLoading] = useRole(user?.email);
 
-  if (userRoleLoading) {
-    return <Loader></Loader>;
-  }
-
   const sidebarLinkStyles =
     ' text-white hover:bg-white hover:text-main transition-all py-2 pl-3 pr-5 rounded';
 
   return (
     <aside className="py-8 px-3 bg-main2 w-64">
       <div className="flex items-start flex-col gap-4">
+        {userRoleLoading && <Loader></Loader>}
+
         {userRole === 'user' && (
           <>
             <NavLink

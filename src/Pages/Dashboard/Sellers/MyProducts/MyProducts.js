@@ -119,7 +119,7 @@ const MyProducts = () => {
                         Unadvertise
                       </button>
                     )}
-                    <button className="py-2 w-28 px-3 rounded-full bg-rose-500 text-white">
+                    <button onClick={} className="py-2 w-28 px-3 rounded-full bg-rose-500 text-white">
                       Delete
                     </button>
                   </td>
