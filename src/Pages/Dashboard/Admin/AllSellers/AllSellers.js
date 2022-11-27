@@ -4,7 +4,7 @@ import swal from 'sweetalert';
 import { cl } from '../../../../Helpers/Helpers';
 import Loader from '../../../Shared/Loader/Loader';
 
-const AllBuyers = () => {
+const AllSellers = () => {
   const {
     data: users = [],
     isLoading,
@@ -98,4 +98,4 @@ const AllBuyers = () => {
   );
 };
 
-export default AllBuyers;
+export default AllSellers;
