@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import SectionHeading from '../../Shared/SectionHeading/SectionHeading';
 import { useQuery } from '@tanstack/react-query';
-import BookingModal from '../../Shared/BookingModal/Modal';
+import BookingModal from '../../Shared/BookingModal/BookingModal';
 import Product from '../../Shared/Product/Product';
 import Loader from '../../Shared/Loader/Loader';
+import { cl } from '../../../Helpers/Helpers';
 
 const Advertised = () => {
   const [activeProduct, setActiveProduct] = useState(null);
   const { data: ads = [], isLoading } = useQuery({
     queryKey: ['ads'],
     queryFn: async () => {
-      const res = await fetch(`${process.env.REACT_APP_API_ROOT}/ads`);
+      const res = await fetch(cl('/ads'));
       const data = await res.json();
       return data;
     },

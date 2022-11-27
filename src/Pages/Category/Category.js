@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { cl } from '../../Helpers/Helpers';
 import Loader from '../Shared/Loader/Loader';
 import SectionHeading from '../Shared/SectionHeading/SectionHeading';
-import BookingModal from '../Shared/BookingModal/Modal';
+import BookingModal from '../Shared/BookingModal/BookingModal';
 import Product from '../Shared/Product/Product';
 
 const Category = () => {

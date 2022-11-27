@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import toast from 'react-hot-toast';
 import swal from 'sweetalert';
 import { cl } from '../../../../Helpers/Helpers';
 import Loader from '../../../Shared/Loader/Loader';
@@ -54,6 +55,31 @@ const AllSellers = () => {
     });
   };
 
+  const handleVerify = (user, status) => {
+    fetch(cl(`/users/sellers/${user.email}`), {
+      method: 'PATCH',
+      headers: {
+        'content-type': 'application/json',
+        authorization: `Bearer ${localStorage.getItem('dream-accessToken')}`,
+      },
+      body: JSON.stringify({ verified: status }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data.modifiedCount > 0) {
+          refetch();
+          if (status) {
+            return toast.success('Successdully verified.');
+          }
+          toast.success('Successdully unverified.');
+        } else {
+          toast.error('Something went very wrong!');
+        }
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <section className="py-4 px-2">
       <h2 className="text-2xl font-semibold mb-5">All Sellers</h2>
@@ -83,7 +109,20 @@ const AllSellers = () => {
 
               <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">{user.name}</td>
 
-              <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+              <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap flex flex-col gap-2">
+                {!user.verified ? (
+                  <button
+                    onClick={() => handleVerify(user, true)}
+                    className="py-2 w-28 px-3 rounded-full bg-main text-white">
+                    Verify
+                  </button>
+                ) : (
+                  <button
+                    onClick={() => handleVerify(user, false)}
+                    className="py-2 w-28 px-3 rounded-full bg-main text-white">
+                    Unverify
+                  </button>
+                )}
                 <button
                   onClick={() => handleDelete(user)}
                   className="py-2 w-28 px-3 rounded-full bg-rose-500 text-white">

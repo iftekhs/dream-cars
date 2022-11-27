@@ -1,9 +1,8 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import { toast } from 'react-hot-toast';
-
-import './BookingModal.css';
 import { cl } from '../../../Helpers/Helpers';
+import './BookingModal.css';
 
 const BookingModal = ({ product, setActiveProduct }) => {
   const { user } = useContext(AuthContext);
@@ -46,7 +45,7 @@ const BookingModal = ({ product, setActiveProduct }) => {
 
   return (
     <>
-      <div className="BookingModal bg-white rounded-lg z-10 p-5">
+      <div className="booking-modal bg-white rounded-lg z-10 p-5">
         <h2 className="text-2xl font-semibold">Book the car</h2>
 
         <form onSubmit={handleSubmit} className="mt-3">
@@ -128,7 +127,7 @@ const BookingModal = ({ product, setActiveProduct }) => {
           </div>
           <div className="mb-6">
             <label htmlFor="location" className="block mb-2 text-sm font-medium text-gray-900 ">
-              Your Location
+              Meeting Location
             </label>
             <input
               name="location"

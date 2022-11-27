@@ -55,7 +55,7 @@ const AddProduct = () => {
       purchaseYear,
       yearOfUse,
       categoryId,
-      sellerName: user?.name,
+      sellerName: user.displayName,
     };
 
     console.log(product);
@@ -72,15 +72,12 @@ const AddProduct = () => {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          form.reset();
           toast.success('Product Created Sucessfully!');
-          // setTimeout(() => {
-
-          // }, 1000)
         } else {
-          toast.error(data.message);
+          toast.error('Something went very wrong!');
         }
       })
+      .catch(console.error)
       .finally(() => {
         setBtnLoading(false);
       });

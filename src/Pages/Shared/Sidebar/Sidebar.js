@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Sidebar.css';
-import { MdList, MdOutlineReportGmailerrorred } from 'react-icons/md';
+import { MdList } from 'react-icons/md';
 import { FiUsers } from 'react-icons/fi';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import useRole from '../../../hooks/useRole';
@@ -85,17 +85,6 @@ const Sidebar = () => {
               to="/dashboard/sellers">
               <div className="flex items-center justify-center gap-2">
                 <FiUsers></FiUsers> All Sellers
-              </div>
-            </NavLink>
-            <NavLink
-              end
-              className={({ isActive }) => {
-                const activeStyles = isActive && 'bg-white text-main';
-                return activeStyles + sidebarLinkStyles;
-              }}
-              to="/dashboard/reported">
-              <div className="flex items-center justify-center gap-2">
-                <MdOutlineReportGmailerrorred></MdOutlineReportGmailerrorred> Reported Items
               </div>
             </NavLink>
           </>

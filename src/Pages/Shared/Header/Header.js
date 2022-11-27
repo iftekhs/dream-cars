@@ -5,6 +5,7 @@ import { AuthContext } from '../../../contexts/AuthProvider';
 import './Header.css';
 import Menu from './Menu/Menu';
 import Avatar from '../../../images/avatar.svg';
+import Logo from '../../../images/logo.svg';
 
 const Header = () => {
   const [menuState, setMenuState] = useState(false);
@@ -25,7 +26,7 @@ const Header = () => {
       <nav className="container mx-auto flex items-center justify-between">
         <Link to="/">
           <div className="logo-container flex items-center justify-center gap-1">
-            {/* <img className="logo" src="" alt="" /> */}
+            <img className="h-10 rounded-full" src={Logo} alt="" />
             <h4 className="text-2xl md:text-4xl font-bold">DreamCars</h4>
           </div>
         </Link>
