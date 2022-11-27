@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider';
 import { toast } from 'react-hot-toast';
 
-import './Modal.css';
+import './BookingModal.css';
 import { cl } from '../../../Helpers/Helpers';
 
-const Modal = ({ product, setActiveProduct }) => {
+const BookingModal = ({ product, setActiveProduct }) => {
   const { user } = useContext(AuthContext);
 
   const handleSubmit = (event) => {
@@ -46,7 +46,7 @@ const Modal = ({ product, setActiveProduct }) => {
 
   return (
     <>
-      <div className="modal bg-white rounded-lg z-10 p-5">
+      <div className="BookingModal bg-white rounded-lg z-10 p-5">
         <h2 className="text-2xl font-semibold">Book the car</h2>
 
         <form onSubmit={handleSubmit} className="mt-3">
@@ -147,4 +147,4 @@ const Modal = ({ product, setActiveProduct }) => {
   );
 };
 
-export default Modal;
+export default BookingModal;

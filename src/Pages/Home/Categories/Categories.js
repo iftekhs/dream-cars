@@ -33,8 +33,6 @@ const Categories = () => {
             ))}
           </div>
         )}
-
-        <div className=""></div>
       </div>
     </section>
   );

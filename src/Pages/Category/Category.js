@@ -4,8 +4,8 @@ import { useQuery } from '@tanstack/react-query';
 import { cl } from '../../Helpers/Helpers';
 import Loader from '../Shared/Loader/Loader';
 import SectionHeading from '../Shared/SectionHeading/SectionHeading';
-import Product from './Product/Product';
-import Modal from './Modal/Modal';
+import BookingModal from '../Shared/BookingModal/Modal';
+import Product from '../Shared/Product/Product';
 
 const Category = () => {
   const { data: currentCategory } = useLoaderData();
@@ -40,7 +40,9 @@ const Category = () => {
               setActiveProduct={setActiveProduct}></Product>
           ))}
         </div>
-        {activeProduct && <Modal product={activeProduct} setActiveProduct={setActiveProduct}></Modal>}
+        {activeProduct && (
+          <BookingModal product={activeProduct} setActiveProduct={setActiveProduct}></BookingModal>
+        )}
       </div>
     </section>
   );
