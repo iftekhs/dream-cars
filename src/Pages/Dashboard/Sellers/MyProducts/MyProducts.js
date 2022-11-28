@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../../contexts/AuthProvider';
-import { cl } from '../../../../Helpers/Helpers';
+import { cl, getPrice } from '../../../../Helpers/Helpers';
 import Loader from '../../../Shared/Loader/Loader';
 import swal from 'sweetalert';
 
@@ -133,8 +133,8 @@ const MyProducts = () => {
                     </span>
                   </td>
 
-                  <td className="py-4 px-6">{product.originalPrice}</td>
-                  <td className="py-4 px-6">{product.resalePrice}</td>
+                  <td className="py-4 px-6">{getPrice(product.originalPrice)}</td>
+                  <td className="py-4 px-6">{getPrice(product.resalePrice)}</td>
                   <td className="py-4 px-6 text-right flex flex-col gap-2">
                     {product.status === 'unsold' && !product.advertise && (
                       <button

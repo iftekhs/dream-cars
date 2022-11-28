@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaCheckCircle } from 'react-icons/fa';
-import { cl } from '../../../Helpers/Helpers';
+import { cl, getPrice } from '../../../Helpers/Helpers';
 import './Product.css';
 
 const Product = ({ product, setActiveProduct }) => {
   const [verified, setVerified] = useState(false);
 
-  const { picture, name, location, resalePrice, originalPrice, yearOfUse, createdAt, sellerName } =
+  const { picture, name, location, originalPrice, resalePrice, yearOfUse, createdAt, sellerName } =
     product;
 
   useEffect(() => {
@@ -22,22 +22,29 @@ const Product = ({ product, setActiveProduct }) => {
     setActiveProduct(product);
   };
 
-  const handleWishList = () => {
-    fetch(cl('/wishlists'), {
+  const handleReport = () => {
+    const report = {
+      productId: product._id,
+    };
+
+    fetch(cl('/reports'), {
       method: 'POST',
       headers: {
         'content-type': 'application/json',
         authorization: `Bearer ${localStorage.getItem('dream-accessToken')}`,
       },
-      body: JSON.stringify(product),
+      body: JSON.stringify(report),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.acknowledged) {
-          toast.success('Successfully added to wishlist!');
+          toast.success('Successfully reported the product!');
         } else {
-          toast.error('Something went very wrong!');
+          if (data.message) {
+            toast.error(data.message);
+          } else {
+            toast.error('Something went very wrong!');
+          }
         }
       })
       .catch(console.error);
@@ -59,15 +66,15 @@ const Product = ({ product, setActiveProduct }) => {
             {verified && <FaCheckCircle className="text-blue-500"></FaCheckCircle>}
           </p>
           <p className="px-5 py-3 rounded-full bg-cgray font-semibold">
-            Original Price: ${originalPrice / 1000}k
+            Original Price: ${getPrice(originalPrice)}
           </p>
           <p className="px-5 py-3 rounded-full bg-cgray font-semibold">
-            Resale Price: ${resalePrice / 1000}k
+            Resale Price: ${getPrice(resalePrice)}
           </p>
           <button
-            onClick={handleWishList}
-            className="px-3 py-2 rounded-full bg-emerald-500 text-white font-semibold text-sm">
-            Add to wishlist
+            onClick={handleReport}
+            className="px-3 py-2 rounded-full bg-rose-500 text-white font-semibold text-sm">
+            Report To Admin
           </button>
         </div>
         <div className="mt-5">

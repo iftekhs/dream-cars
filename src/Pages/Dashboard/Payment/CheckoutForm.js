@@ -1,5 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { cl } from '../../../Helpers/Helpers';
 
 const CheckoutForm = ({ booking }) => {
@@ -39,7 +40,7 @@ const CheckoutForm = ({ booking }) => {
       return;
     }
 
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
+    const { error } = await stripe.createPaymentMethod({
       type: 'card',
       card,
     });
@@ -91,9 +92,15 @@ const CheckoutForm = ({ booking }) => {
           console.log(data);
           if (data.insertedId) {
             setSuccess('Congrats! your payment completed');
+            toast.success('Your payment was successfull!');
             setTransactionId(paymentIntent.id);
           }
+        })
+        .catch(() => {
+          toast.error('Something went very wrong!');
         });
+    } else {
+      toast.error('Something went very wrong!');
     }
     setProcessing(false);
   };
@@ -127,9 +134,8 @@ const CheckoutForm = ({ booking }) => {
       <p className="mt-2 text-rose-500">{cardError}</p>
       {success && (
         <div>
-          <p className="text-green-500">{success}</p>
           <p>
-            Your transactionId: <span className="font-bold">{transactionId}</span>
+            Your transactionId: <span className="font-bold text-emerald-500">{transactionId}</span>
           </p>
         </div>
       )}

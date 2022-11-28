@@ -4,6 +4,7 @@ import toast from 'react-hot-toast';
 import swal from 'sweetalert';
 import { cl } from '../../../../Helpers/Helpers';
 import Loader from '../../../Shared/Loader/Loader';
+import SectionContent from '../../../Shared/SectionContent/SectionContent';
 
 const AllSellers = () => {
   const {
@@ -18,8 +19,6 @@ const AllSellers = () => {
       return data;
     },
   });
-
-  console.log(users);
 
   if (isLoading) {
     return <Loader></Loader>;
@@ -83,7 +82,6 @@ const AllSellers = () => {
   return (
     <section className="py-4 px-2">
       <h2 className="text-2xl font-semibold mb-5">All Sellers</h2>
-
       <table className="w-full text-sm text-left text-gray-500">
         <thead className="text-xs text-gray-700 uppercase bg-gray-50">
           <tr>

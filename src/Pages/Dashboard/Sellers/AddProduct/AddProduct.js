@@ -70,8 +70,8 @@ const AddProduct = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.acknowledged) {
+          form.reset();
           toast.success('Product Created Sucessfully!');
         } else {
           toast.error('Something went very wrong!');
@@ -112,18 +112,7 @@ const AddProduct = () => {
               required
             />
           </div>
-          <div className="mb-3">
-            <label htmlFor="resalePrice" className="block mb-2 text-sm font-medium text-gray-900 ">
-              Product Resale Price
-            </label>
-            <input
-              name="resalePrice"
-              type="number"
-              id="resalePrice"
-              className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main focus:border-main block w-full p-2.5"
-              required
-            />
-          </div>
+
           <div className="mb-3">
             <label
               htmlFor="originalPrice"
@@ -134,6 +123,19 @@ const AddProduct = () => {
               name="originalPrice"
               type="number"
               id="originalPrice"
+              className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main focus:border-main block w-full p-2.5"
+              required
+            />
+          </div>
+
+          <div className="mb-3">
+            <label htmlFor="resalePrice" className="block mb-2 text-sm font-medium text-gray-900 ">
+              Product Resale Price
+            </label>
+            <input
+              name="resalePrice"
+              type="number"
+              id="resalePrice"
               className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main focus:border-main block w-full p-2.5"
               required
             />

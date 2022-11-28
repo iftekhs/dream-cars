@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { cl, getPrice } from '../../../../Helpers/Helpers';
 
-const OrderRow = ({ order }) => {
+const ReportRow = ({ report }) => {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    fetch(cl(`/products/find/${order.productId}`))
+    fetch(cl(`/products/find/${report.productId}`))
       .then((res) => res.json())
       .then((data) => setProduct(data));
-  }, [order]);
+  }, [report]);
 
   if (!product) {
     return (
@@ -43,27 +42,15 @@ const OrderRow = ({ order }) => {
         <img className="h-24 rounded-lg" src={product.picture} alt={product.name} />
       </td>
       <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">{product.name}</td>
+      <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">{product.userEmail}</td>
       <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
-        ${getPrice(product.originalPrice)}
+        ${getPrice(product.resalePrice)}
       </td>
       <td className="py-4 px-6">
-        <span
-          className={`bg-main text-white py-2 px-4 rounded-full inline ${
-            order.status === 'paid' ? 'bg-emerald-500' : 'bg-rose-500'
-          }`}>
-          {order.status}
-        </span>
-      </td>
-
-      <td className="py-4 px-6">
-        <Link
-          to={`/dashboard/payment/${order._id}`}
-          className="py-2 w-28 px-3 rounded-full bg-main text-white">
-          Pay
-        </Link>
+        <button className="py-2 w-28 px-3 rounded-full bg-rose-500 text-white">Delete</button>
       </td>
     </tr>
   );
 };
 
-export default OrderRow;
+export default ReportRow;
