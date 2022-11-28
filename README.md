@@ -2,6 +2,12 @@
 
 Live Site: https://dreamcars-96993.web.app/
 
+# Admin Credentials
+----------------------------
+adminEmail: admin@email.com
+
+adminPassword: password
+
 #Features & Functionalities
 ------------------------------------
 1) Email-Password & Google authentication using firebase.
