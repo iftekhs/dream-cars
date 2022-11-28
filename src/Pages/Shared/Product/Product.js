@@ -1,10 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
 import { FaCheckCircle } from 'react-icons/fa';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider';
 import { cl, getPrice } from '../../../Helpers/Helpers';
 import './Product.css';
 
 const Product = ({ product, setActiveProduct }) => {
+  const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
   const [verified, setVerified] = useState(false);
 
   const { picture, name, location, originalPrice, resalePrice, yearOfUse, createdAt, sellerName } =
@@ -19,10 +23,18 @@ const Product = ({ product, setActiveProduct }) => {
   const date = new Date(createdAt).toDateString();
 
   const handleBooking = () => {
+    if (!user || !user.uid) {
+      return navigate('/login');
+    }
+
     setActiveProduct(product);
   };
 
   const handleReport = () => {
+    if (!user || !user.uid) {
+      return navigate('/login');
+    }
+
     const report = {
       productId: product._id,
     };
@@ -51,14 +63,14 @@ const Product = ({ product, setActiveProduct }) => {
   };
 
   return (
-    <div className="product flex flex-col">
+    <div className="product flex flex-col justify-between">
       <div>
         <img className="rounded-xl" src={picture} alt="" />
       </div>
       <div className="flex flex-col px-2 mt-3">
         <h2 className="text-2xl font-bold mb-4"> {name} </h2>
         <div className="flex flex-col items-start gap-4">
-          <p>{location}</p>
+          <p>Location: {location}</p>
           <p>Used: {yearOfUse}/yr</p>
           <p>Posted At: {date}</p>
           <p className=" flex items-center gap-2">

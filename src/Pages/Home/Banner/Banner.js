@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import bannerImage from '../../../images/banner.svg';
 import './banner.css';
 
@@ -9,18 +10,23 @@ const Banner = () => {
         <div className="banner md:text-left text-center lg:py-52 py-32 flex items-center justify-center">
           <div className="container mx-auto flex lg:flex-row flex-col items-center justify-center lg:gap-4 gap-20">
             <div className="px-16 z-50">
-              <h2 className="text-lg text-main font-semibold uppercase">TOP RESALE CARS STORE</h2>
+              <h2 className="text-lg text-main font-semibold uppercase">
+                TOP RESALE CARS PLATFORM
+              </h2>
               <h1 className="mt-6 md:text-5xl text-3xl font-bold">
                 Buy your dream car with the cheapest price!
               </h1>
               <p className="mt-6 md:text-lg lh-18">
-                We resell exclusive cars with a very cheap price to help you get your dream car!
-                Currently we are offering a 10% discount on every car for the black friday!
+                DreamCars is a platform on which you can buy and sell your cars! We help people buy
+                and sell cars, with more than 5 categories our solutions are built to be safe,
+                smart, and convenient for our customers.
               </p>
               <div className="mt-8">
-                <button className="py-3 px-5 rounded-full bg-main text-white transition-all hover:bg-white hover:text-dark">
+                <Link
+                  to="/category/638088dc7d29c05a063ca3df"
+                  className="py-3 px-5 rounded-full bg-main text-white transition-all hover:bg-white hover:text-dark">
                   Get Started
-                </button>
+                </Link>
               </div>
             </div>
             <div>

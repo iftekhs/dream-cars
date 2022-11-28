@@ -1,7 +1,5 @@
 .auth {
   max-width: 900px;
-  min-width: 900px;
-  min-height: 600px;
 }
 
 .auth {
@@ -15,7 +13,7 @@
 }
 
 .auth-body {
-  width: 600px;
+  width: 100%;
   max-width: 600px;
   padding: 40px;
 }

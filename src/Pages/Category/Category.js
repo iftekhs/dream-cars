@@ -16,7 +16,12 @@ const Category = () => {
   const { data: products = [], isLoading } = useQuery({
     queryKey: ['products'],
     queryFn: async () => {
-      const res = await fetch(cl(`/products/${currentCategory._id}`));
+      const res = await fetch(cl(`/products/${currentCategory._id}`), {
+        headers: {
+          'content-type': 'application/json',
+          authorization: `Bearer ${localStorage.getItem('dream-accessToken')}`,
+        },
+      });
       const data = await res.json();
       return data;
     },

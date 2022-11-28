@@ -1,7 +1,7 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 import toast from 'react-hot-toast';
-import { cl } from '../../../Helpers/Helpers';
+import { cl, getPrice } from '../../../Helpers/Helpers';
 
 const CheckoutForm = ({ booking }) => {
   const [cardError, setCardError] = useState('');
@@ -70,7 +70,6 @@ const CheckoutForm = ({ booking }) => {
       return;
     }
     if (paymentIntent.status === 'succeeded') {
-      console.log('card info', card);
       // store payment info in the database
       const payment = {
         price,
@@ -89,7 +88,6 @@ const CheckoutForm = ({ booking }) => {
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.insertedId) {
             setSuccess('Congrats! your payment completed');
             toast.success('Your payment was successfull!');
@@ -107,7 +105,9 @@ const CheckoutForm = ({ booking }) => {
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <p className="text-3xl font-semibold mb-2">{booking.productName}</p>
+      <p className="mb-5 font-semibold">Price: ${getPrice(booking.price)}</p>
+      <form onSubmit={handleSubmit} className="border rounded-lg p-5">
         <CardElement
           options={{
             style: {
@@ -127,8 +127,8 @@ const CheckoutForm = ({ booking }) => {
         <button
           className="mt-5 py-3 px-5 rounded-full bg-main text-white transition-all hover:bg-cgray hover:text-dark"
           type="submit"
-          disabled={!stripe || !clientSecret || processing}>
-          Pay Now
+          disabled={!stripe || !clientSecret || processing || success}>
+          {success ? 'Paid' : 'Pay Now'}
         </button>
       </form>
       <p className="mt-2 text-rose-500">{cardError}</p>

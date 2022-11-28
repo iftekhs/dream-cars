@@ -12,13 +12,16 @@ const AllBuyers = () => {
   } = useQuery({
     queryKey: ['buyers'],
     queryFn: async () => {
-      const res = await fetch(cl('/users/all/buyers'));
+      const res = await fetch(cl('/users/all/buyers'), {
+        headers: {
+          'content-type': 'application/json',
+          authorization: `Bearer ${localStorage.getItem('dream-accessToken')}`,
+        },
+      });
       const data = await res.json();
       return data;
     },
   });
-
-  console.log(users);
 
   if (isLoading) {
     return <Loader></Loader>;
@@ -58,42 +61,44 @@ const AllBuyers = () => {
     <section className="py-4 px-2">
       <h2 className="text-2xl font-semibold mb-5">All Buyers</h2>
 
-      <table className="w-full text-sm text-left text-gray-500">
-        <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-          <tr>
-            <th scope="col" className="py-3 px-6">
-              Name
-            </th>
-            <th scope="col" className="py-3 px-6">
-              Email
-            </th>
-            <th scope="col" className="py-3 px-6">
-              Actions
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user) => (
-            <tr key={user._id} className="bg-white border-b  hover:bg-gray-50 ">
-              <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">{user.name}</td>
-
-              <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
-                {user.email}
-              </td>
-
-              <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">{user.name}</td>
-
-              <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
-                <button
-                  onClick={() => handleDelete(user)}
-                  className="py-2 w-28 px-3 rounded-full bg-rose-500 text-white">
-                  Delete
-                </button>
-              </td>
+      <div className="overflow-auto">
+        <table className="w-full text-sm text-left text-gray-500 overflow-hidden">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+            <tr>
+              <th scope="col" className="py-3 px-6">
+                Name
+              </th>
+              <th scope="col" className="py-3 px-6">
+                Email
+              </th>
+              <th scope="col" className="py-3 px-6">
+                Actions
+              </th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user._id} className="bg-white border-b  hover:bg-gray-50 ">
+                <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                  {user.name}
+                </td>
+
+                <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                  {user.email}
+                </td>
+
+                <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
+                  <button
+                    onClick={() => handleDelete(user)}
+                    className="py-2 w-28 px-3 rounded-full bg-rose-500 text-white">
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </section>
   );
 };

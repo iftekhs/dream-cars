@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../../contexts/AuthProvider';
 import { cl } from '../../../../Helpers/Helpers';
 import BtnLoader from '../../../Shared/BtnLoader/BtnLoader';
@@ -10,6 +11,7 @@ import SectionContent from '../../../Shared/SectionContent/SectionContent';
 const AddProduct = () => {
   const [btnLoading, setBtnLoading] = useState(false);
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const { data: categories = [], isLoading } = useQuery({
     queryKey: ['addProductCategories'],
@@ -58,7 +60,6 @@ const AddProduct = () => {
       sellerName: user.displayName,
     };
 
-    console.log(product);
 
     fetch(cl('/products'), {
       method: 'POST',
@@ -73,6 +74,9 @@ const AddProduct = () => {
         if (data.acknowledged) {
           form.reset();
           toast.success('Product Created Sucessfully!');
+          setTimeout(() => {
+            navigate('/dashboard');
+          }, 1000);
         } else {
           toast.error('Something went very wrong!');
         }
@@ -122,6 +126,7 @@ const AddProduct = () => {
             <input
               name="originalPrice"
               type="number"
+              step=".01"
               id="originalPrice"
               className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main focus:border-main block w-full p-2.5"
               required
@@ -135,6 +140,7 @@ const AddProduct = () => {
             <input
               name="resalePrice"
               type="number"
+              step=".01"
               id="resalePrice"
               className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main focus:border-main block w-full p-2.5"
               required
@@ -198,6 +204,7 @@ const AddProduct = () => {
             <input
               name="purchaseYear"
               type="number"
+              step=".01"
               id="purchaseYear"
               className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main focus:border-main block w-full p-2.5"
               required
@@ -224,11 +231,15 @@ const AddProduct = () => {
               id="categoryId"
               className="bg-white border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-main focus:border-main block w-full p-2.5"
               required>
-              {categories.map((category) => (
-                <option key={category._id} value={category._id}>
-                  {category.name}
-                </option>
-              ))}
+              {categories.map((category) => {
+                return category.name === 'All' ? (
+                  ''
+                ) : (
+                  <option key={category._id} value={category._id}>
+                    {category.name}
+                  </option>
+                );
+              })}
             </select>
           </div>
           <div>

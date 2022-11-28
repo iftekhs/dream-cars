@@ -93,11 +93,12 @@ const Login = () => {
       <div className="flex items-center justify-center">
         <div className="auth flex items-center justify-center px-2">
           <div className="auth-body-container flex bg-white rounded-lg overflow-hidden">
-            <div className="bg-gradient-to-tr from-main to-main2 text-white auth-body-left flex flex-col items-center justify-center text-center">
+            <div className="hidden lg:flex bg-gradient-to-tr from-main to-main2 text-white auth-body-left flex-col items-center justify-center text-center">
               <img className="h-40 mb-5" src={loginImage} alt="" />
               <h2 className="text-3xl font-semibold mb-3">DreamCars</h2>
               <p className="text-sm px-5">
-                We bring the car that you have dreamed of for your entire life in cheap price!
+                We make selling of your cars super easy, fast and safe also make it safe for buyers
+                to buy!
               </p>
             </div>
             <div className="auth-body">

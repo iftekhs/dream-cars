@@ -8,10 +8,10 @@ import { cl } from '../../../Helpers/Helpers';
 
 const Advertised = () => {
   const [activeProduct, setActiveProduct] = useState(null);
-  const { data: ads = [], isLoading } = useQuery({
-    queryKey: ['ads'],
+  const { data: proucts = [], isLoading } = useQuery({
+    queryKey: ['advertisedProucts'],
     queryFn: async () => {
-      const res = await fetch(cl('/ads'));
+      const res = await fetch(cl('/products/advertised'));
       const data = await res.json();
       return data;
     },
@@ -23,14 +23,14 @@ const Advertised = () => {
 
   return (
     <>
-      {ads.length > 0 && (
+      {proucts.length > 0 && (
         <section className="mb-20 py-24 px-2">
           <div className="container mx-auto">
             <SectionHeading
               top={'OUR ADVERTISED PRODUCTS'}
               main={'Top Advertised Products'}></SectionHeading>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-              {ads.map((product) => (
+              {proucts.map((product) => (
                 <Product
                   key={product._id}
                   product={product}

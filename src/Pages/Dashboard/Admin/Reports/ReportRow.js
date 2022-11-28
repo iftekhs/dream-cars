@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { cl, getPrice } from '../../../../Helpers/Helpers';
 
-const ReportRow = ({ report }) => {
+const ReportRow = ({ report, handleDelete }) => {
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
@@ -47,7 +47,11 @@ const ReportRow = ({ report }) => {
         ${getPrice(product.resalePrice)}
       </td>
       <td className="py-4 px-6">
-        <button className="py-2 w-28 px-3 rounded-full bg-rose-500 text-white">Delete</button>
+        <button
+          onClick={() => handleDelete(product, report)}
+          className="py-2 w-28 px-3 rounded-full bg-rose-500 text-white">
+          Delete
+        </button>
       </td>
     </tr>
   );

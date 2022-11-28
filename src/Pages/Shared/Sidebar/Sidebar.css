@@ -1,0 +1,31 @@
+.sidebar {
+  min-height: 100vh;
+  transition: 0.2s all ease-in-out;
+  z-index: 200;
+}
+
+.sidebar-trigger {
+  position: fixed;
+  top: 20%;
+  left: 0;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  z-index: 150;
+  display: none;
+}
+
+@media (max-width: 1024px) {
+  .sidebar {
+    position: fixed;
+    left: -380px;
+    top: 0;
+  }
+
+  .sidebar-trigger {
+    display: flex;
+  }
+
+  .active-sidebar {
+    left: 0;
+  }
+}

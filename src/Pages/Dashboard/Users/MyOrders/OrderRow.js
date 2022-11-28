@@ -44,23 +44,20 @@ const OrderRow = ({ order }) => {
       </td>
       <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">{product.name}</td>
       <td className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap">
-        ${getPrice(product.originalPrice)}
+        ${getPrice(product.resalePrice)}
       </td>
       <td className="py-4 px-6">
-        <span
-          className={`bg-main text-white py-2 px-4 rounded-full inline ${
-            order.status === 'paid' ? 'bg-emerald-500' : 'bg-rose-500'
-          }`}>
-          {order.status}
-        </span>
-      </td>
-
-      <td className="py-4 px-6">
-        <Link
-          to={`/dashboard/payment/${order._id}`}
-          className="py-2 w-28 px-3 rounded-full bg-main text-white">
-          Pay
-        </Link>
+        {order.status === 'paid' ? (
+          <span className="text-white py-2 px-4 rounded-full inline bg-emerald-500">
+            {order.status}
+          </span>
+        ) : (
+          <Link
+            to={`/dashboard/payment/${order._id}`}
+            className="py-2 w-28 px-3 rounded-full bg-main text-white">
+            Pay
+          </Link>
+        )}
       </td>
     </tr>
   );

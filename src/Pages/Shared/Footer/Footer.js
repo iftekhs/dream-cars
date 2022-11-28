@@ -1,4 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import Logo from '../../../images/logo.svg';
 
 const Footer = () => {
   return (
@@ -6,9 +8,12 @@ const Footer = () => {
       <div className="container mx-auto">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-            <a href="/" className="flex items-center">
-              <h4 className="text-2xl md:text-4xl font-bold">DreamCars</h4>
-            </a>
+            <Link to="/" className="flex items-center">
+              <div className="logo-container flex items-center justify-center gap-1">
+                <img className="h-10 rounded-full" src={Logo} alt="" />
+                <h4 className="text-2xl md:text-4xl font-bold">DreamCars</h4>
+              </div>
+            </Link>
           </div>
           <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
             <div>
@@ -18,7 +23,7 @@ const Footer = () => {
               <ul className="text-gray-600 dark:text-gray-400">
                 <li className="mb-4">
                   <a href="/" className="hover:underline">
-                    Flowbite
+                    Dream Cars
                   </a>
                 </li>
                 <li>
@@ -69,7 +74,7 @@ const Footer = () => {
           <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">
             © 2022
             <a href="/" className="hover:underline">
-              Flowbite™
+              DreamCars
             </a>
             . All Rights Reserved.
           </span>

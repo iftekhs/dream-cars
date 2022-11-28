@@ -12,7 +12,12 @@ const MyOrders = () => {
   const { data: orders = [], isLoading } = useQuery({
     queryKey: ['orders'],
     queryFn: async () => {
-      const res = await fetch(cl(`/bookings/${user.email}`));
+      const res = await fetch(cl(`/bookings/${user.email}`), {
+        headers: {
+          'content-type': 'application/json',
+          authorization: `Bearer ${localStorage.getItem('dream-accessToken')}`,
+        },
+      });
       const data = await res.json();
       return data;
     },
@@ -26,32 +31,31 @@ const MyOrders = () => {
     <section className="px-2 py-8">
       <SectionContent>
         <h2 className="text-2xl font-semibold mb-5">Your All Orders</h2>
-        <table className="w-full text-sm text-left text-gray-500">
-          <thead className="text-xs text-gray-700 uppercase bg-gray-50">
-            <tr>
-              <th scope="col" className="py-3 px-6">
-                Image
-              </th>
-              <th scope="col" className="py-3 px-6">
-                Title
-              </th>
-              <th scope="col" className="py-3 px-6">
-                Price
-              </th>
-              <th scope="col" className="py-3 px-6">
-                Status
-              </th>
-              <th scope="col" className="py-3 px-6">
-                Actions
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {orders.map((order) => (
-              <OrderRow key={order._id} order={order}></OrderRow>
-            ))}
-          </tbody>
-        </table>
+        <div className="overflow-auto">
+          <table className="w-full text-sm text-left text-gray-500">
+            <thead className="text-xs text-gray-700 uppercase bg-gray-50">
+              <tr>
+                <th scope="col" className="py-3 px-6">
+                  Image
+                </th>
+                <th scope="col" className="py-3 px-6">
+                  Name
+                </th>
+                <th scope="col" className="py-3 px-6">
+                  Price
+                </th>
+                <th scope="col" className="py-3 px-6">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {orders.map((order) => (
+                <OrderRow key={order._id} order={order}></OrderRow>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </SectionContent>
     </section>
   );
